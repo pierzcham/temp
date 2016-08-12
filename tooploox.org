@@ -1,15 +1,62 @@
 * Zadania
 ** Read in the data.csv file and analyse the basic statistics of the v(n) or n = 24, 72, 168.
+Załadowanie danych.
 #+BEGIN_SRC R :results silent
   dane <- read.csv("~/temp/tooploox/data.csv",header=FALSE)
 #+END_SRC
 
+Podstawowe statystyki:
+
+dla n = 24
+#+BEGIN_SRC R :eval no
+  summary(dane[,25])
+#+END_SRC
+
+#+RESULTS:
+:     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+:    21200   125000   194000   377000   327000 15300000
+
+
+dla n = 72
+#+BEGIN_SRC R :eval no
+  summary(dane[,73])
+#+END_SRC
+
+#+RESULTS:
+:     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+:    26200   148000   237000   613000   434000 22900000
+
+dla n = 168
+#+BEGIN_SRC R :eval no
+  summary(dane[,169])
+#+END_SRC
+
+#+RESULTS:
+:     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+:    27100   153000   252000   743000   522000 27900000
+
 ** Plot the distribution of the v(168). How would you describe the distribution of the views?
+#+BEGIN_SRC R
+plot(density(dane[,169]))
+#+END_SRC
+
+#+RESULTS:
+
+Wniosek: Rozkład o dużym dodatnim współczynniki skośności.
+
 ** Plot the distribution of the log transformed v(168). Does it ring a bell?
-** To improve the generalization and performance of your prediction algorithm, you can remove
-the so-called outliers from the dataset. To that end, compute the mean value μ and standard
-deviation σ of the log transformed v(168). Remove from the dataset data for videos where
+#+BEGIN_SRC R
+plot(density(log(dane[,169])))
+#+END_SRC
+
+#+RESULTS:
+
+** To improve the generalization and performance of your prediction algorithm, you can remove the so-called outliers from the dataset. 
+To that end, compute the mean value μ and standard deviation σ of the
+log transformed v(168). Remove from the dataset data for videos where
 v(168) does not fit within 3σ rule.
+
+
 ** Compute correlation coefficients between the log-transformed v(n) for n = 1, 2, ..., 24 and v(168).
 ** Randomly split the dataset into training and test sets (10% of the dataset should be used for testing, rest for training).
 ** Using training data, find linear regressor that minimizes Ordinary Least Squares (OLS) error function. It should take as the input v(n) and output v(168).
