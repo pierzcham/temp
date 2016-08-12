@@ -1,0 +1,22 @@
+* Zadania
+** Read in the data.csv file and analyse the basic statistics of the v(n) or n = 24, 72, 168.
+#+BEGIN_SRC R :results silent
+  dane <- read.csv("~/temp/tooploox/data.csv",header=FALSE)
+#+END_SRC
+
+** Plot the distribution of the v(168). How would you describe the distribution of the views?
+** Plot the distribution of the log transformed v(168). Does it ring a bell?
+** To improve the generalization and performance of your prediction algorithm, you can remove
+the so-called outliers from the dataset. To that end, compute the mean value μ and standard
+deviation σ of the log transformed v(168). Remove from the dataset data for videos where
+v(168) does not fit within 3σ rule.
+** Compute correlation coefficients between the log-transformed v(n) for n = 1, 2, ..., 24 and v(168).
+** Randomly split the dataset into training and test sets (10% of the dataset should be used for testing, rest for training).
+** Using training data, find linear regressor that minimizes Ordinary Least Squares (OLS) error function. It should take as the input v(n) and output v(168).
+**  Extend the above linear regressor with multiple inputs, that is it for a given time n the
+regressor should take an array of view counts preceding time n: {v(i)}ni=1
+** To evaluate the proposed predictors, compute mean Relative Squared Error (mRSE), that is defined as:
+where v̂id (168) is the number of views of video id from a testing
+dataset T estimated bypredictor and vid (168) is a true recorded
+value.
+** Plot the mRSE values for n ∈ (1, 24) computed on the test dataset.
